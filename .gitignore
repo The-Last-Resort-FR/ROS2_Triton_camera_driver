@@ -2,7 +2,3 @@
 build
 install
 log
-misc
-src/build
-src/install
-src/log
