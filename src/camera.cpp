@@ -131,7 +131,9 @@ void CameraDriver::SetNetworkSettings() {
  * 
  */
 void CameraDriver::HWTrigger() {
-
+    _serial = new SerialComm("/dev/ttyACM0");
+    _serial->SendCommand(SET_TRIG_FREQ, 20);
+    _serial->SendCommand(START_TRIG);
 }
 
 /**
@@ -296,4 +298,13 @@ std::vector<Arena::DeviceInfo>& CameraDriver::GetDeviceInfos() {
  */
 void CameraDriver::SetDeviceInfos(std::vector<Arena::DeviceInfo> deviceInfos) {
     _deviceInfos = deviceInfos;
+}
+
+void CameraDriver::SetAllParams() {
+#define X(field, type) SET_PARAMS(np, field, type);
+    PARAM_FIELDS_ARENA
+#undef X
+#define X(field, type) SET_PARAMS_DOGSHITSTRINGS(np, field, type);
+    PARAM_FIELDS_ARENA_DOGSHITSTRINGS
+#undef X
 }

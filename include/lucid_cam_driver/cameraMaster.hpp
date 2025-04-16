@@ -42,6 +42,7 @@ enum MasterMode {
 
 class CameraMaster : public ::rclcpp::Node {
 private:
+    NodeParameters params;
     std::vector<CameraDriver*> _cams;
     Logger* _lg;
     bool _isValid;
@@ -52,9 +53,11 @@ private:
     rclcpp::Node::SharedPtr _node;
     image_transport::ImageTransport* _it;
     std::vector<image_transport::Publisher> _publishers;
-public:
+    public:
     CameraMaster(MasterMode mode, Logger* lg);
     ~CameraMaster();
+    void DeclareAllParameters();
+    void SetAllParameters();
     void StartCams();
     void Run();
 };

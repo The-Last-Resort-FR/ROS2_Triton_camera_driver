@@ -13,7 +13,6 @@
 // User includes
 #include <lucid_cam_driver/cameraMaster.hpp>
 
-
 /**
  * @brief Construct a new Camera Master and creates all the cameras with their associated topics
  * 
@@ -156,4 +155,16 @@ void CameraMaster::StartCams() {
         Logger::Log(LogLevel::ERROR, "Unexpected exception thrown\n");
         _isValid = false;
     }
+}
+
+void CameraMaster::DeclareAllParameters() {
+#define X(field, type) DECLARE_PARAM(params, field);
+    PARAM_FIELDS_DEC
+#undef X
+}
+
+void CameraMaster::SetAllParameters() {
+#define X(field, type) GET_PARAMS(params, field);
+    PARAM_FIELDS_DEC
+#undef X
 }

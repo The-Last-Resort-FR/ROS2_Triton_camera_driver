@@ -35,11 +35,13 @@ ament_auto_add_library(lucid_cam_driver SHARED
         "include/lucid_cam_driver/camera.hpp"
         "include/lucid_cam_driver/cameraMaster.hpp"
         "include/lucid_cam_driver/logger.hpp"
+        "include/lucid_cam_driver/serial.hpp"
         "src/lucid_cam.cpp"
         "src/benchmark.cpp"
         "src/camera.cpp"
         "src/cameraMaster.cpp"
-        "src/logger.cpp")
+        "src/logger.cpp"
+        "src/serial.cpp")
 
 ament_target_dependencies(lucid_cam_driver
         "rclcpp"
@@ -48,6 +50,10 @@ ament_target_dependencies(lucid_cam_driver
         "cv_bridge"
         "image_transport"
         "rclcpp_components")
+
+target_link_libraries(lucid_cam_driver
+    serial
+)
 
 ## ArenaSDK is not handled by ament, so we need the manual steps below.
 target_include_directories(lucid_cam_driver

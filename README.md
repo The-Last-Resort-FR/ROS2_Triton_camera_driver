@@ -12,6 +12,7 @@ This program takes images from one or more cameras on an external trigger then s
 
 - ROS2 Humble
 - LUCID Arena SDK
+- libserial-dev
 
 ### Installing
 
@@ -56,6 +57,9 @@ ros2 run image_view image_view image:=/camera/imageL _image_transport:=theora & 
 - Cameras : TRI054S-CC, TRI050S1-QC
 
 ## Version History
+
+- V0.1.0 Inital version
+- V0.1.1 Adding communication with a MCU via USB Serial for hardware triggerring
 
 ## License
 
